@@ -15,7 +15,7 @@ class TimeFormatter
   end 
 
   def self.get_date_time(params)
-    "#{self.get_date(params)} #{self.get_time(params)}"    
+    "#{get_date(params)} #{get_time(params)}"    
   end
 
   def self.valid_params
