@@ -1,4 +1,3 @@
-require 'logger'
 require 'uri'
 require_relative 'time_formatter'
 
