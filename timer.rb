@@ -1,6 +1,6 @@
 require 'logger'
 require 'uri'
-require 'time_formatter'
+require_relative 'time_formatter'
 
 class App
   
