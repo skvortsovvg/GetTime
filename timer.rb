@@ -1,12 +1,17 @@
+require 'uri'
 require_relative 'time_formatter'
 
 class App
   
   def call(env)
-    time_srv = TimeFormatter.new
-    time_srv.call(env['REQUEST_URI'])
   
-    answer(time_srv.result, time_srv.status)
+    uri = URI.parse(env['REQUEST_URI'])
+    params = URI.decode_www_form(uri.query).assoc('format') if uri.query
+    return answer("404\n Ooops!\n Bad request", 404) unless uri.path.include?('/time') && params
+
+    tf = TimeFormatter.new(params.last)
+    return tf.success? ? answer(tf.get_date_time) : answer(tf.error, 400)
+  
   end
 
 private
